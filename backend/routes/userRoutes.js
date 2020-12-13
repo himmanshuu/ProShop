@@ -9,7 +9,7 @@ import { protect } from "../middleware/authMiddleware.js";
 const router = express.Router();
 
 // @desc Fetch all products
-// @route  GET /api/products
+// @route  GET /api/users
 // access Public
 router.post("/login", authUser);
 router.post("/", registerUser);

@@ -30,7 +30,7 @@ const CartScreen = ({ match, location, history }) => {
     dispatch(removeFromCart(id));
   };
   const checkOutHanlder = () => {
-    console.log("Checkout");
+    history.push("/login?redirect=shipping");
   };
   return (
     <Row>

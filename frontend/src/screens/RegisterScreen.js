@@ -23,7 +23,7 @@ const RegisterScreen = ({ location, history }) => {
       history.push(redirect);
     }
   }, [redirect, history, userInfo]);
-  const submitHanlder = (e) => {
+  const submitHandler = (e) => {
     e.preventDefault();
     if (password !== confirmPassword) {
       setMessage("Password do not match");
@@ -37,7 +37,7 @@ const RegisterScreen = ({ location, history }) => {
       {message && <Message variant="danger">{message}</Message>}
       {error && <Message variant="danger">{error}</Message>}
       {loading && <Loader />}
-      <Form onSubmit={submitHanlder}>
+      <Form onSubmit={submitHandler}>
         <Form.Group controlId="name">
           <Form.Label>Name</Form.Label>
           <Form.Control
@@ -66,7 +66,7 @@ const RegisterScreen = ({ location, history }) => {
           ></Form.Control>
         </Form.Group>
         <Form.Group controlId="confirmPassword">
-          <Form.Label>Password </Form.Label>
+          <Form.Label> Confirm Password </Form.Label>
           <Form.Control
             type="password"
             placeholder="Confirm password"

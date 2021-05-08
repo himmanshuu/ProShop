@@ -38,6 +38,20 @@ const getUserProfile = asyncHandler(async (req, res) => {
   }
 });
 
+
+//desc get all user profile
+//route Get api/users/profile
+//access private
+const getAllUsers = asyncHandler(async (req, res) => {
+  const users = await User.find({});
+  if (users) {
+    return res.json({users});
+  } else {
+    res.status(404);
+    throw new Error("Users not Found");
+  }
+});
+
 //desc update user profile
 //route Put api/users/profile
 //access private
@@ -88,4 +102,4 @@ const registerUser = asyncHandler(async (req, res) => {
     throw new Error("Invalid User data");
   }
 });
-export { authUser, getUserProfile, registerUser, updateUserProfile };
+export { authUser, getUserProfile, registerUser, updateUserProfile ,getAllUsers};

@@ -14,6 +14,10 @@ import {
   USER_UPDATE_FAIL,
   USER_LOGOUT,
   USER_DETAILS_RESET,
+  USER_LIST_SUCCESS,
+  USER_LIST_RESET,
+  USER_LIST_REQUEST,
+  USER_LIST_FAIL,
 } from "../constants/userConstants";
 import { ORDER_MY_LIST_RESET } from "../constants/orderConstants";
 export const login = (email, password) => async (dispatch) => {
@@ -142,11 +146,43 @@ export const updateUser = (user) => async (dispatch, getState) => {
       type: USER_UPDATE_SUCCESS,
       payload: data,
     });
-    localStorage.setItem("userInfo", JSON.stringify(data));
+    //localStorage.setItem("userList", JSON.stringify(data));
   } catch (error) {
     console.log(error);
     dispatch({
       type: USER_UPDATE_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+
+export const listUsers = () => async (dispatch, getState) => {
+  try {
+    dispatch({ type: USER_LIST_REQUEST });
+    const {
+      userLogin: { userInfo },
+    } = getState();
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    };
+
+    const { data } = await axios.get("/api/users/profiles", config);
+
+    dispatch({
+      type: USER_LIST_SUCCESS,
+      payload: data,
+    });
+    // localStorage.setItem("userInfo", JSON.stringify(data));
+  } catch (error) {
+    console.log(error);
+    dispatch({
+      type: USER_LIST_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message

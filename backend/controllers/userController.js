@@ -101,10 +101,22 @@ const registerUser = asyncHandler(async (req, res) => {
     throw new Error("Invalid User data");
   }
 });
+
+const deleteUser = asyncHandler(async (req, res) => {
+  const userToDelete = await User.findById(req.params.id);
+  if (userToDelete) {
+    await userToDelete.remove();
+    res.json({ msg: "user removed successfully" });
+  } else {
+    res.status(404);
+    throw new Error("User not found");
+  }
+});
 export {
   authUser,
   getUserProfile,
   registerUser,
   updateUserProfile,
   getAllUsers,
+  deleteUser,
 };

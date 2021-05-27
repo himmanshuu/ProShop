@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import {
   Row,
   Col,
@@ -9,11 +9,11 @@ import {
   Card,
   Button,
   Form,
-} from 'react-bootstrap';
-import Rating from '../components/Rating';
-import { listProductDetails } from '../actions/productActions';
-import Message from '../components/Message';
-import Loader from '../components/Loader';
+} from "react-bootstrap";
+import Rating from "../components/Rating";
+import { listProductDetails } from "../actions/productActions";
+import Message from "../components/Message";
+import Loader from "../components/Loader";
 
 const ProductScreen = ({ history, match }) => {
   const [qty, setQty] = useState(1);
@@ -72,7 +72,7 @@ const ProductScreen = ({ history, match }) => {
                   <Row>
                     <Col>Status:</Col>
                     <Col>
-                      {product.countInStock > 0 ? 'In Stock' : 'Out Of Stock'}
+                      {product.countInStock > 0 ? "In Stock" : "Out Of Stock"}
                     </Col>
                   </Row>
                 </ListGroup.Item>
@@ -84,7 +84,7 @@ const ProductScreen = ({ history, match }) => {
                         <Form.Control
                           as="select"
                           value={qty}
-                          onChange={(e) => setQty(e.target.value)}
+                          onChange={(e) => setQty(Number(e.target.value))}
                         >
                           {[...Array(product.countInStock).keys()].map((x) => (
                             <option key={x + 1} value={x + 1}>

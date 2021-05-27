@@ -6,7 +6,7 @@ const reviewSchema = mongoose.Schema(
     comment: { type: String, required: true },
   },
   {
-    timeStamps: true,
+    timestamps: true,
   }
 );
 const productSchema = mongoose.Schema(
@@ -59,7 +59,7 @@ const productSchema = mongoose.Schema(
     },
   },
   {
-    timeStamps: true,
+    timestamps: true,
   }
 );
 

@@ -61,6 +61,7 @@ const updateProduct = asyncHandler(async (req, res) => {
     rating,
     numReviews,
   } = req.body;
+  console.log(req.body);
   if (product) {
     product.name = name || product.name;
     product.price = price || product.price;
@@ -71,7 +72,9 @@ const updateProduct = asyncHandler(async (req, res) => {
     product.image = image || product.image;
     product.rating = rating || product.rating;
     product.numReviews = numReviews || product.numReviews;
-    res.json(await product.save());
+    const updatedProduct = await product.save();
+    console.log(updatedProduct);
+    res.json(updatedProduct);
   } else {
     res.status(404);
     throw new Error("No product found");
